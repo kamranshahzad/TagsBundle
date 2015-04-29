@@ -1,0 +1,26 @@
+parameters:
+
+    # Service Parameters defined in app/config.
+
+services:
+
+    #
+    # Tags Forms.
+    #
+    kamran_tags.form.type.tag_create:
+        class: %kamran_tags.form.type.tag_create.class%
+        arguments:
+            - %kamran_tags.entity.tags.class%
+    kamran_tags.form.handler.tag_create:
+        class: %kamran_tags.form.handler.tag_create.class%
+        arguments:
+            #- @event_dispatcher
+            - @form.factory
+            - @doctrine.orm.entity_manager
+            - @kamran_tags.form.type.tag_create
+            - @kamran_tags.entity.tags
+    #
+    # Entities
+    #
+    kamran_tags.entity.tags:
+        class: %kamran_tags.entity.tags.class%
